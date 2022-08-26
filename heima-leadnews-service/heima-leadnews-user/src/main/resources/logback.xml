@@ -24,7 +24,7 @@
         </encoder>
     </appender>
 
-    <!-- 异步输出 -->
+    <!-- 异步输出，即先在内存中存，等攒到一定程度再输入到文件中 -->
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
         <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
         <discardingThreshold>0</discardingThreshold>
@@ -34,11 +34,12 @@
         <appender-ref ref="FILE"/>
     </appender>
 
-
+<!--作用：mybatis的日志输出到控制台上-->
     <logger name="org.apache.ibatis.cache.decorators.LoggingCache" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
-    <logger name="org.springframework.boot" level="debug"/>
+<!--    springboot的输出级别-->
+    <logger name="org.springframework.boot" level="info"/>
     <root level="info">
         <!--<appender-ref ref="ASYNC"/>-->
         <appender-ref ref="FILE"/>

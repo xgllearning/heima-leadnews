@@ -24,6 +24,7 @@ import java.util.Map;
 @Transactional
 @Slf4j
 public class ApUserServiceImpl extends ServiceImpl<ApUserMapper, ApUser> implements ApUserService {
+    //实现了ApUserService接口,但是里面的方法想复用而不是去实现，则需要继承ServiceImpl
     /**
      * app端登录功能
      * @param dto
