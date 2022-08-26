@@ -9,6 +9,7 @@ import com.heima.model.user.dtos.LoginDto;
 import com.heima.model.user.pojos.ApUser;
 import com.heima.user.mapper.ApUserMapper;
 import com.heima.user.service.ApUserService;
+import com.heima.user.vo.LoginUserVo;
 import com.heima.utils.common.AppJwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -50,19 +51,20 @@ public class ApUserServiceImpl extends ServiceImpl<ApUserMapper, ApUser> impleme
                 return ResponseResult.errorResult(AppHttpCodeEnum.LOGIN_PASSWORD_ERROR, "密码错误");
             }
             //6. 返回json数据 + jwt-- token, 携带不敏感信息
-            HashMap<String, Object> map = new HashMap<>();
+            //封装LoginUserVo作为返回的数据--属性名称需要满足要求
+            LoginUserVo loginUserVo = new LoginUserVo();
             user.setPassword("");
             user.setSalt("");
-            map.put("user", user);
             String token = AppJwtUtil.getToken(user.getId().longValue());
-            map.put("token", token);
-            return ResponseResult.okResult(map);
+            loginUserVo.setUser(user);
+            loginUserVo.setToken(token);
+            return ResponseResult.okResult(loginUserVo);
         } else {
             //此时为游客登录, 返回id为0的token
-            HashMap<String, Object> map = new HashMap<>();
+            LoginUserVo loginUserVo = new LoginUserVo();
             String token = AppJwtUtil.getToken(0l);
-            map.put("token", token);
-            return ResponseResult.okResult(map);
+            loginUserVo.setToken(token);
+            return ResponseResult.okResult(loginUserVo);
         }
     }
 }
