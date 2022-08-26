@@ -1,7 +1,10 @@
 package com.heima.article.controller.v1;
 
+import com.heima.article.service.ApArticleService;
+import com.heima.common.constants.ArticleConstants;
 import com.heima.model.article.dtos.ArticleHomeDto;
 import com.heima.model.common.dtos.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/article")
 public class ArticleHomeController {
 
+    @Autowired
+    private ApArticleService apArticleService;
+
     /**第一种情况：
      * 当第一次进入系统或点击了某一个频道的时候，
      * 前端会默认传递一个时间过来（minBehotTime=2063年，maxBehotTime：0（毫秒）），我们要查询的时候小于这个时间的数据
@@ -19,7 +25,7 @@ public class ArticleHomeController {
      */
     @PostMapping("/load")
     public ResponseResult load(@RequestBody ArticleHomeDto dto) {
-        return null;
+        return apArticleService.load(dto, ArticleConstants.LOADTYPE_LOAD_MORE);
     }
 
     /**
@@ -29,7 +35,7 @@ public class ArticleHomeController {
      */
     @PostMapping("/loadmore")
     public ResponseResult loadMore(@RequestBody ArticleHomeDto dto) {
-        return null;
+        return apArticleService.load(dto, ArticleConstants.LOADTYPE_LOAD_MORE);
     }
 
     /**
@@ -39,6 +45,6 @@ public class ArticleHomeController {
      */
     @PostMapping("/loadnew")
     public ResponseResult loadNew(@RequestBody ArticleHomeDto dto) {
-        return null;
+        return apArticleService.load(dto, ArticleConstants.LOADTYPE_LOAD_NEW);
     }
 }
