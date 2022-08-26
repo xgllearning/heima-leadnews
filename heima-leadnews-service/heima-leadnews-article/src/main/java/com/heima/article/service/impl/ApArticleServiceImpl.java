@@ -1,5 +1,7 @@
 package com.heima.article.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.heima.article.mapper.ApArticleMapper;
 import com.heima.article.service.ApArticleService;
@@ -59,8 +61,13 @@ public class ApArticleServiceImpl extends ServiceImpl<ApArticleMapper, ApArticle
             loadType=ArticleConstants.LOADTYPE_LOAD_MORE;
         }
         //6.查询
-        List<ApArticle> apArticleList = apArticleMapper.loadArticleList(dto, loadType);
+        //TODO:优化,减少数据库的耦合，将limit通过plus的分页实现解除耦合
+        Page<ApArticle> page = new Page<>();
+        page.setSearchCount(false);//不进行统计数量
+        page.setCurrent(1);
+        page.setSize(dto.getSize());
+        IPage<ApArticle> apArticleList = apArticleMapper.loadArticleList(page,dto, loadType);
         //7.结果封装返回
-        return ResponseResult.okResult(apArticleList);
+        return ResponseResult.okResult(apArticleList.getRecords());
     }
 }

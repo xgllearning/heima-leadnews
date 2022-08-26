@@ -56,6 +56,5 @@ ORDER BY aa.publish_time DESC LIMIT 10-->
             </if>
         </where>
         order by aa.publish_time desc
-        limit #{dto.size}
     </select>
 </mapper>
