@@ -11,7 +11,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@Configuration
+@Configuration//只加该注解无作用,并不会被其他微服务的启动类扫描到,加入spring.factories
 @EnableSwagger2
 public class SwaggerConfiguration {
 

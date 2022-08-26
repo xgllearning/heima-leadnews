@@ -39,6 +39,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         //3.不是登录，获取token,判断是否为空(有时候token前面携带某些参数，后台系统页面发送的token以"Bearer "开头，需要处理)
         //标准写法，token的请求名是什么需要跟前端确认
         String token = exchange.getRequest().getHeaders().getFirst("token");
+        //之所以getFirst是因为token是有可能重复，直接exchange.getRequest().getHeaders().get("token")是数组
         if (StringUtils.isEmpty(token)) {
             //为空返回权限不够，返回401,setComplete是结束
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
