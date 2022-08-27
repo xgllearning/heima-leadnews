@@ -1,14 +1,20 @@
 package com.heima.minio.test;
 
 import com.heima.file.service.FileStorageService;
+import com.heima.file.service.impl.MinIOFileStorageService;
+import com.heima.minio.MinIOApplication;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
+@SpringBootTest(classes = MinIOApplication.class)
+@RunWith(SpringRunner.class)
 public class MinIOTest {
 
     /**
@@ -40,7 +46,25 @@ public class MinIOTest {
             ex.printStackTrace();
         }
     }
+    //面向接口编程,所以可以使用自动配置中的--MinIOFileStorageService
+    @Autowired
+    private FileStorageService fileStorageService;
 
+    @Autowired
+    private MinIOFileStorageService minIOFileStorageService;
+
+
+    @Test
+    public void testUpload() throws Exception {
+        FileInputStream fileInputStream = new FileInputStream("d:\\02-list.html");
+        String path = fileStorageService.uploadHtmlFile("", "02list.html", fileInputStream);
+        System.out.println(path);
+    }
+
+    @Test
+    public void testDel(){
+        minIOFileStorageService.delete("http://192.168.200.130:9000/leadnews/01list.html");
+    }
 
 
 }
