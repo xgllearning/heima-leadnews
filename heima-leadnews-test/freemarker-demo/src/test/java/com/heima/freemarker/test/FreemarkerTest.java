@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.*;
 
 @SpringBootTest(classes = FreemarkerApp.class)
@@ -34,6 +35,7 @@ public class FreemarkerTest {
         //参数一：数据模型(Model)--类似于map
         //参数二：输出位置
         template.process(map,new FileWriter("d:/02-list.html"));
+
     }
 
     private Map extracted() {
