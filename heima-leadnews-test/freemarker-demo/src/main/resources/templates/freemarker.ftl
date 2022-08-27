@@ -8,7 +8,8 @@
 </head>
 <body>
 <b>普通文本 String 展示：</b><br><br>
-Hello ${name} <br>
+Hello ${name!""} <br>
+<#--${name!''}表示如果name为空显示空字符串-->
 <hr>
 <b>对象Student中的数据展示：</b><br/>
 姓名：${stu.name}<br/>

@@ -17,14 +17,25 @@
         <td>年龄</td>
         <td>钱包</td>
     </tr>
+    <#if stus??><#--空值处理，对集合是否为空进行判断处理 -->
     <#list stus as stu><#--#list 集合名 as 对象名-->
-        <tr>
-            <td>${stu_index+1}</td><#--_index默认从0开始-->
-            <td>${stu.name}</td>
-            <td>${stu.age}</td>
-            <td>${stu.money}</td>
-        </tr>
+        <#if stu.name=='小红'>
+            <tr style="color: blueviolet">
+                <td>${stu_index+1}</td><#--_index默认从0开始-->
+                <td>${stu.name}</td>
+                <td>${stu.age}</td>
+                <td>${stu.money}</td>
+            </tr>
+        <#else >
+            <tr>
+                <td>${stu_index+1}</td><#--_index默认从0开始-->
+                <td>${stu.name}</td>
+                <td>${stu.age}</td>
+                <td>${stu.money}</td>
+            </tr>
+        </#if>
     </#list>
+    </#if>
 </table>
 <hr>
 
@@ -40,7 +51,7 @@
 输出stu2的学生信息：<br/>
 姓名：${stuMap.stu2.name}<br/>
 年龄：${stuMap.stu2.age}<br/>
-
+<#--方式一和方式二的区别，方式一是根据字符串找对象，方式二传入的直接就是key，故方式二不能用于遍历-->
 <br/>
 <a href="###">遍历map中两个学生信息：</a><br/>
 <table>
