@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller//需要返回的是视图，是页面，而不是json，所以需要用controller,而不是restController
 public class HelloController {
@@ -73,6 +70,17 @@ public class HelloController {
         HashMap<String,Student> stuMap = new HashMap<>();
         stuMap.put("stu1",stu1);
         stuMap.put("stu2",stu2);
+        //遍历hashmap方法1
+        Set<String> key = stuMap.keySet();//获取到键值
+        for (String s : key) {
+            //遍历键值后根据键值取数据
+            Student student = stuMap.get(s);
+        }
+        //获取的是键值对
+        Set<Map.Entry<String, Student>> entrySet = stuMap.entrySet();
+        for (Map.Entry<String, Student> entry : entrySet) {
+            Student student = entry.getValue();
+        }
         // 3.1 向model中存放Map数据
         model.addAttribute("stuMap", stuMap);
         return "02-list";
