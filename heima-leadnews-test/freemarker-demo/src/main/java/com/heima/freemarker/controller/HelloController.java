@@ -1,6 +1,6 @@
 package com.heima.freemarker.controller;
 
-import com.alibaba.fastjson.JSON;
+
 import com.heima.freemarker.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

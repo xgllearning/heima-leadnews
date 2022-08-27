@@ -47,10 +47,10 @@
 <#assign data=text?eval/>
 开户行:${data.bank}
 账户:${data.account}
-json转对象方式2
-6.<#assign object=json?eval/>
-姓名：${object.name}
-性别：${object.age}
+<#--json转对象方式2-->
+<#--6.<#assign object=json?eval/>-->
+<#--姓名：${object.name}-->
+<#--性别：${object.age}-->
 <hr>
 
 <#-- Map 数据的展示 -->
