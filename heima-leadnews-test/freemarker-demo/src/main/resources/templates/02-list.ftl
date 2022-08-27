@@ -37,6 +37,20 @@
     </#list>
     </#if>
 </table>
+<#--内建函数-->
+1.获取某个集合的大小:集合大小为:${stus?size}
+2.当前时间(日期加时间)：${today?datetime}
+3.自定义时间：${today?string("yyyy年MM月")}
+4.长数据类型的数字以字符串显示：${point?c}
+5.将json字符串转为对象1:
+<#assign text="{'bank':'工商银行','account':'123456'}"/>
+<#assign data=text?eval/>
+开户行:${data.bank}
+账户:${data.account}
+json转对象方式2
+6.<#assign object=json?eval/>
+姓名：${object.name}
+性别：${object.age}
 <hr>
 
 <#-- Map 数据的展示 -->

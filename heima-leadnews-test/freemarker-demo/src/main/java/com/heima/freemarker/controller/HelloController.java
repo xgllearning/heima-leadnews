@@ -1,5 +1,6 @@
 package com.heima.freemarker.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.heima.freemarker.entity.Student;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,6 +84,15 @@ public class HelloController {
         }
         // 3.1 向model中存放Map数据
         model.addAttribute("stuMap", stuMap);
+
+        model.addAttribute("today",new Date());
+        model.addAttribute("point",21877895765754l);
+        //将json传到freemarker，再转为对象
+        Map<String, String> map = new HashMap<>();
+        map.put("name","xm");
+        map.put("age","25");
+//        String jsonString = JSON.toJSONString(map);
+//        model.addAttribute("json",jsonString);
         return "02-list";
     }
 
