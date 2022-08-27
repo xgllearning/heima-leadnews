@@ -1,3 +1,5 @@
+<!--该注释输入html注释，可以在源代码看到，属于freemarker的文本-->
+<#--该注释在在源代码看不到-->
 <!DOCTYPE html>
 <html>
 <head>
