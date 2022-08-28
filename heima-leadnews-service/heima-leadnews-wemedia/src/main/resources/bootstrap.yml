@@ -10,3 +10,7 @@ spring:
       config:
         server-addr: 192.168.200.130:8848
         file-extension: yml
+#处理上传文件过大问题，记得还有nginx可能出现问题
+  servlet:
+    multipart:
+      max-file-size: 100MB
