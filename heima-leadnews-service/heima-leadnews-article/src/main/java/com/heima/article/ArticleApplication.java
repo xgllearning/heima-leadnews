@@ -18,7 +18,7 @@ public class ArticleApplication {
     public static void main(String[] args) {
         SpringApplication.run(ArticleApplication.class,args);
     }
-
+    //注册分页插件
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
