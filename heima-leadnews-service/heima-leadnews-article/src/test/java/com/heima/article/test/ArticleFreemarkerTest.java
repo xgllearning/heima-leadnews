@@ -55,6 +55,7 @@ private ApArticleMapper apArticleMapper;
             //3.通过freemarker创建html,参数一:数据模型类似map、参数二，输出流,可以指定输出位置或者把数据存放在内存(字符串格式)
             //4.TODO:传过去的数据模型需要是一个集合,是根据集合内的为不为空,再判断集合中的对象的type字段的值,而数据库内容是string
             List<Map> list = JSON.parseArray(articleContent.getContent(), Map.class);
+            System.out.println(list);
             HashMap<String, Object> model = new HashMap<>();
             model.put("content",list);//参数一
             StringWriter out = new StringWriter();//参数二,字符串格式暂存内存
