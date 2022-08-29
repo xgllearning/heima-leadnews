@@ -125,6 +125,6 @@ public class WmMaterialServiceImpl extends ServiceImpl<WmMaterialMapper, WmMater
         //6.构造返回
         ResponseResult pageResponseResult = new PageResponseResult((int) page.getCurrent(), (int) page.getSize(), (int) page.getTotal());
         pageResponseResult.setData(page.getRecords());
-        return ResponseResult.okResult(pageResponseResult);
+        return pageResponseResult;
     }
 }
